@@ -8,7 +8,7 @@ websocket-client==1.7.0
 pandas==2.1.4
 
 # Technical indicators (RSI, MACD, EMA, Bollinger Bands)
-pandas-ta==0.3.14b
+pandas-ta
 
 # Polymarket CLOB client (uncomment when ready to go live)
 # py-clob-client==0.17.0
