@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────
+# Polymarket Bot — Configuration
+# ─────────────────────────────────────────────
+# Edit these settings to control bot behaviour.
+# API keys go in GitHub Secrets (NOT here).
+
+bot:
+  # true  = log decisions only, no real bets placed
+  # false = place real bets (only when you're ready!)
+  paper_trade: true
+
+  # Dollar amount to bet per trade
+  bet_size_usd: 5
+
+  # How many 5-min candles to analyse each run
+  candle_count: 100
+
+strategy:
+  # Which strategy to use. Options:
+  #   previous_candle      - follow last candle direction
+  #   mean_reversion       - bet against last candle
+  #   rsi                  - bet on oversold/overbought RSI
+  #   ema_cross            - bet on EMA trend direction
+  #   two_candle_momentum  - require 2 candles to agree
+  active: "previous_candle"
+
+kraken:
+  pair: "XBTUSD"
+  interval: 5   # candle size in minutes
