@@ -195,3 +195,29 @@
 [2026-03-25 21:07:18 UTC] Strategy 'previous_candle' → UP
 [2026-03-25 21:07:18 UTC] 📝 [PAPER TRADE] $5.0 → UP at Chainlink $70,938.10
 [2026-03-25 21:07:18 UTC] ==================================================
+[2026-03-25 23:04:27 UTC] ==================================================
+[2026-03-25 23:04:27 UTC] Bot v4 | 2026-03-25 23:04 UTC | paper=True | bet=$5.0
+[2026-03-25 23:04:27 UTC] ⏱ Execution drift: 267s past 5-min mark (target <90s, ideal <30s)
+[2026-03-25 23:04:27 UTC] Fetching data (parallel)...
+[2026-03-25 23:04:27 UTC] Candles: trying Chainlink...
+[2026-03-25 23:04:27 UTC] Retry 1/3 (400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5)
+[2026-03-25 23:04:27 UTC] Chainlink failed, trying Kraken...
+[2026-03-25 23:04:28 UTC] Kraken candles: 100 | $71,397.00
+[2026-03-25 23:04:29 UTC] Retry 2/3 (400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5)
+[2026-03-25 23:04:34 UTC] Failed after 3 attempts: 400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5
+[2026-03-25 23:04:34 UTC] Kraken price fallback: $71,397.00
+[2026-03-25 23:04:34 UTC] ──────────────────────────────────────────────────
+[2026-03-25 23:04:34 UTC] OUTCOME ✅  Signal: UP | Actual: UP
+[2026-03-25 23:04:34 UTC] Price:  $70,938.10 → $71,397.00 (+$458.90)
+[2026-03-25 23:04:34 UTC] P&L this trade: $+4.50
+[2026-03-25 23:04:34 UTC] ──────────────────────────────────────────────────
+[2026-03-25 23:04:34 UTC] 📊 PERFORMANCE SUMMARY
+[2026-03-25 23:04:34 UTC]    Trades:     8 (4W / 4L)
+[2026-03-25 23:04:34 UTC]    Win rate:   50.0% (❌ below 52.6% break-even)
+[2026-03-25 23:04:34 UTC]    Total P&L:  $-2.00
+[2026-03-25 23:04:34 UTC]    Best trade: $+4.50
+[2026-03-25 23:04:34 UTC]    Worst:      $-5.00
+[2026-03-25 23:04:34 UTC]    Loss streak:0 (circuit breaker at 5)
+[2026-03-25 23:04:34 UTC] Strategy 'previous_candle' → UP
+[2026-03-25 23:04:34 UTC] 📝 [PAPER TRADE] $5.0 → UP at Chainlink $71,397.00
+[2026-03-25 23:04:34 UTC] ==================================================
