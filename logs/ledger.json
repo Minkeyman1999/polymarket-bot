@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "time": "2026-03-25T13:58:28.536014+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 71691.1,
+    "price_now": 71395.9,
+    "change": -295.2,
+    "pnl": 4.5
+  }
+]
