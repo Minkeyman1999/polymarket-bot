@@ -1,0 +1,15 @@
+[2026-03-25 13:58:21 UTC] ==================================================
+[2026-03-25 13:58:21 UTC] Bot v4 | 2026-03-25 13:58 UTC | paper=True | bet=$5.0
+[2026-03-25 13:58:21 UTC] ⏱ Execution drift: 201s past 5-min mark (target <90s, ideal <30s)
+[2026-03-25 13:58:21 UTC] Fetching data (parallel)...
+[2026-03-25 13:58:21 UTC] Candles: trying Chainlink...
+[2026-03-25 13:58:21 UTC] Retry 1/3 (400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5)
+[2026-03-25 13:58:21 UTC] Chainlink failed, trying Kraken...
+[2026-03-25 13:58:21 UTC] Kraken candles: 100 | $71,691.10
+[2026-03-25 13:58:23 UTC] Retry 2/3 (400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5)
+[2026-03-25 13:58:28 UTC] Failed after 3 attempts: 400 Client Error: Bad Request for url: https://clob.polymarket.com/prices-history?market=BTC-USD&interval=1m&fidelity=5
+[2026-03-25 13:58:28 UTC] Kraken price fallback: $71,691.10
+[2026-03-25 13:58:28 UTC] No trades recorded yet.
+[2026-03-25 13:58:28 UTC] Strategy 'previous_candle' → DOWN
+[2026-03-25 13:58:28 UTC] 📝 [PAPER TRADE] $5.0 → DOWN at Chainlink $71,691.10
+[2026-03-25 13:58:28 UTC] ==================================================
