@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polymarket BTC Bot</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #080a0f;
+    color: #e2e8f0;
+    font-family: 'Courier New', monospace;
+    padding: 16px;
+    min-height: 100vh;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .subtitle { font-size: 10px; color: #5a6070; letter-spacing: 2px;
+              text-transform: uppercase; margin-bottom: 3px; }
+
+  .badge {
+    font-size: 9px; padding: 3px 8px; border-radius: 4px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .badge-live  { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .badge-paper { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .badge-error { background: rgba(239,68,68,0.15);  color: #ef4444; }
+
+  .last-update { font-size: 10px; color: #5a6070; margin-top: 4px; }
+
+  /* Stat cards */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    background: #0d1018;
+    border: 1px solid #1a1d2a;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .stat.green  { border-color: rgba(34,197,94,0.3); }
+  .stat.red    { border-color: rgba(239,68,68,0.3); }
+  .stat.amber  { border-color: rgba(245,158,11,0.3); }
+  .stat.blue   { border-color: rgba(59,130,246,0.3); }
+
+  .stat-label { font-size: 9px; color: #5a6070; text-transform: uppercase;
+                letter-spacing: 1px; margin-bottom: 5px; }
+  .stat-value { font-size: 22px; font-weight: 700; }
+  .stat-sub   { font-size: 9px; color: #5a6070; margin-top: 3px; }
+  .green .stat-value { color: #22c55e; }
+  .red   .stat-value { color: #ef4444; }
+  .amber .stat-value { color: #f59e0b; }
+  .blue  .stat-value { color: #3b82f6; }
+
+  /* Charts */
+  .chart-card {
+    background: #0d1018;
+    border: 1px solid #1a1d2a;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .chart-title {
+    font-size: 10px; color: #5a6070;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  canvas { max-height: 200px; }
+
+  /* Trade table */
+  .table-card {
+    background: #0d1018;
+    border: 1px solid #1a1d2a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .table-header {
+    padding: 10px 14px;
+    border-bottom: 1px solid #1a1d2a;
+    font-size: 10px; color: #5a6070;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  th {
+    padding: 8px 10px; text-align: left;
+    font-size: 9px; font-weight: 400; color: #5a6070;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  td { padding: 8px 10px; border-top: 1px solid #1a1d2a; }
+  .up   { color: #22c55e; }
+  .down { color: #ef4444; }
+  .win  { background: rgba(34,197,94,0.1);  color: #22c55e;
+          padding: 2px 7px; border-radius: 4px; font-size: 9px; }
+  .loss { background: rgba(239,68,68,0.1);  color: #ef4444;
+          padding: 2px 7px; border-radius: 4px; font-size: 9px; }
+
+  /* Empty state */
+  .empty {
+    padding: 40px 20px; text-align: center; color: #5a6070; font-size: 12px;
+  }
+
+  /* Break-even line note */
+  .note {
+    font-size: 10px; color: #5a6070; margin-top: 8px; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="subtitle">Polymarket BTC Bot</div>
+    <h1>Paper Trade Dashboard</h1>
+    <div class="last-update" id="lastUpdate">Loading...</div>
+  </div>
+  <div>
+    <span class="badge badge-paper" id="modeBadge">PAPER TRADE</span>
+  </div>
+</header>
+
+<!-- Stat cards -->
+<div class="stats" id="statsGrid">
+  <div class="stat" id="statPnl">
+    <div class="stat-label">Total P&amp;L</div>
+    <div class="stat-value">—</div>
+    <div class="stat-sub">paper trades</div>
+  </div>
+  <div class="stat" id="statWinRate">
+    <div class="stat-label">Win Rate</div>
+    <div class="stat-value">—</div>
+    <div class="stat-sub">need &gt;52.6%</div>
+  </div>
+  <div class="stat" id="statTrades">
+    <div class="stat-label">Trades</div>
+    <div class="stat-value">—</div>
+    <div class="stat-sub">W / L</div>
+  </div>
+  <div class="stat" id="statStreak">
+    <div class="stat-label">Loss Streak</div>
+    <div class="stat-value">—</div>
+    <div class="stat-sub">circuit break at 5</div>
+  </div>
+  <div class="stat blue" id="statPrice">
+    <div class="stat-label">Last Chainlink Price</div>
+    <div class="stat-value">—</div>
+    <div class="stat-sub">BTC/USD</div>
+  </div>
+</div>
+
+<!-- Equity curve -->
+<div class="chart-card">
+  <div class="chart-title">Equity Curve (Cumulative P&amp;L)</div>
+  <canvas id="equityChart"></canvas>
+  <div class="note">Break-even win rate: 52.6% with 0.9× payout (10% fee)</div>
+</div>
+
+<!-- Win/loss bar -->
+<div class="chart-card">
+  <div class="chart-title">Trade Outcomes Over Time</div>
+  <canvas id="outcomesChart"></canvas>
+</div>
+
+<!-- Recent trades -->
+<div class="table-card">
+  <div class="table-header">Recent Trades</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Signal</th>
+          <th>Actual</th>
+          <th>Result</th>
+          <th>Price Change</th>
+          <th>P&amp;L</th>
+          <th>Running</th>
+        </tr>
+      </thead>
+      <tbody id="tradesBody">
+        <tr><td colspan="7" class="empty">Loading trade data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ── Fetch ledger.json from the repo ──────────────────────
+// GitHub Pages serves files from the same repo,
+// so we can read ledger.json directly.
+// The bot commits ledger.json after every run.
+
+const LEDGER_URL = '../logs/ledger.json';
+const REFRESH_MS = 5 * 60 * 1000;  // refresh every 5 mins
+
+let equityChart   = null;
+let outcomesChart = null;
+
+async function loadData() {
+  try {
+    const resp = await fetch(LEDGER_URL + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('No data yet');
+    const ledger = await resp.json();
+    render(ledger);
+  } catch (e) {
+    document.getElementById('lastUpdate').textContent =
+      'No trade data yet — bot is running and collecting data';
+  }
+}
+
+function render(ledger) {
+  if (!ledger || ledger.length === 0) {
+    document.getElementById('lastUpdate').textContent =
+      'No trades recorded yet';
+    return;
+  }
+
+  // ── Stats ───────────────────────────────────────────────
+  const total     = ledger.length;
+  const wins      = ledger.filter(r => r.correct).length;
+  const losses    = total - wins;
+  const winRate   = (wins / total * 100).toFixed(1);
+  const totalPnl  = ledger.reduce((s, r) => s + r.pnl, 0);
+  const lastEntry = ledger[ledger.length - 1];
+
+  // Loss streak
+  let streak = 0;
+  for (let i = ledger.length - 1; i >= 0; i--) {
+    if (!ledger[i].correct) streak++;
+    else break;
+  }
+
+  // Update stat cards
+  const pnlEl = document.getElementById('statPnl');
+  pnlEl.querySelector('.stat-value').textContent =
+    (totalPnl >= 0 ? '+' : '') + '$' + totalPnl.toFixed(2);
+  pnlEl.className = 'stat ' + (totalPnl >= 0 ? 'green' : 'red');
+
+  const wrEl = document.getElementById('statWinRate');
+  wrEl.querySelector('.stat-value').textContent = winRate + '%';
+  wrEl.className = 'stat ' + (parseFloat(winRate) >= 52.6 ? 'green' : 'red');
+
+  const trEl = document.getElementById('statTrades');
+  trEl.querySelector('.stat-value').textContent = total;
+  trEl.querySelector('.stat-sub').textContent = wins + 'W / ' + losses + 'L';
+
+  const stEl = document.getElementById('statStreak');
+  stEl.querySelector('.stat-value').textContent = streak;
+  stEl.className = 'stat ' + (streak >= 4 ? 'red' : streak >= 2 ? 'amber' : '');
+
+  const prEl = document.getElementById('statPrice');
+  prEl.querySelector('.stat-value').textContent =
+    lastEntry.price_now
+      ? '$' + Number(lastEntry.price_now).toLocaleString(undefined, {maximumFractionDigits: 0})
+      : '—';
+
+  // Last update time
+  document.getElementById('lastUpdate').textContent =
+    'Last trade: ' + new Date(lastEntry.time).toLocaleString();
+
+  // ── Equity curve ────────────────────────────────────────
+  let running = 0;
+  const equityData = ledger.map((r, i) => {
+    running += r.pnl;
+    return { x: i + 1, y: parseFloat(running.toFixed(2)) };
+  });
+
+  const eqColor = totalPnl >= 0 ? '#22c55e' : '#ef4444';
+
+  if (equityChart) equityChart.destroy();
+  equityChart = new Chart(document.getElementById('equityChart'), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: equityData,
+        borderColor: eqColor,
+        backgroundColor: eqColor + '15',
+        fill: true,
+        tension: 0.3,
+        pointRadius: equityData.length < 50 ? 3 : 0,
+      }, {
+        // Break-even line at 0
+        data: [{ x: 1, y: 0 }, { x: equityData.length, y: 0 }],
+        borderColor: '#2a2d3a',
+        borderDash: [4, 4],
+        pointRadius: 0,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { type: 'linear', ticks: { color: '#5a6070', font: { size: 9 } },
+             grid: { color: '#1a1d2a' } },
+        y: { ticks: { color: '#5a6070', font: { size: 9 },
+                      callback: v => '$' + v },
+             grid: { color: '#1a1d2a' } }
+      }
+    }
+  });
+
+  // ── Outcomes bar chart ────────────────────────────────────
+  const labels  = ledger.map((_, i) => i + 1);
+  const barData = ledger.map(r => r.pnl);
+  const colors  = ledger.map(r => r.correct ? '#22c55e' : '#ef4444');
+
+  if (outcomesChart) outcomesChart.destroy();
+  outcomesChart = new Chart(document.getElementById('outcomesChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: barData,
+        backgroundColor: colors,
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#5a6070', font: { size: 8 } },
+             grid: { display: false } },
+        y: { ticks: { color: '#5a6070', font: { size: 9 },
+                      callback: v => '$' + v },
+             grid: { color: '#1a1d2a' } }
+      }
+    }
+  });
+
+  // ── Trades table ─────────────────────────────────────────
+  const tbody = document.getElementById('tradesBody');
+  const recent = ledger.slice(-20).reverse();
+  let runningPnl = totalPnl;
+
+  tbody.innerHTML = recent.map(r => {
+    const rowPnl = runningPnl;
+    runningPnl -= r.pnl;
+    const time = new Date(r.time).toLocaleTimeString([], {
+      hour: '2-digit', minute: '2-digit'
+    });
+    const change = r.change >= 0
+      ? '<span class="up">+$' + r.change.toFixed(0) + '</span>'
+      : '<span class="down">-$' + Math.abs(r.change).toFixed(0) + '</span>';
+    const pnlStr = r.pnl >= 0
+      ? '<span class="up">+$' + r.pnl.toFixed(2) + '</span>'
+      : '<span class="down">-$' + Math.abs(r.pnl).toFixed(2) + '</span>';
+    const runStr = rowPnl >= 0
+      ? '+$' + rowPnl.toFixed(2)
+      : '-$' + Math.abs(rowPnl).toFixed(2);
+
+    return `<tr>
+      <td style="color:#5a6070;font-size:9px">${time}</td>
+      <td class="${r.signal === 'UP' ? 'up' : 'down'}">
+        ${r.signal === 'UP' ? '▲' : '▼'} ${r.signal}
+      </td>
+      <td class="${r.actual === 'UP' ? 'up' : 'down'}">
+        ${r.actual === 'UP' ? '▲' : '▼'} ${r.actual}
+      </td>
+      <td><span class="${r.correct ? 'win' : 'loss'}">
+        ${r.correct ? 'WIN' : 'LOSS'}
+      </span></td>
+      <td>${change}</td>
+      <td>${pnlStr}</td>
+      <td style="color:#94a3b8">${runStr}</td>
+    </tr>`;
+  }).join('');
+}
+
+// Load immediately then refresh every 5 mins
+loadData();
+setInterval(loadData, REFRESH_MS);
+</script>
+</body>
+</html>
