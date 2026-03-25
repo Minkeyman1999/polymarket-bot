@@ -1,14 +1,4 @@
-# HTTP requests
 requests==2.31.0
-
-# WebSocket client (for Polymarket Chainlink feed)
 websocket-client==1.7.0
-
-# Data manipulation
 pandas==2.1.4
-
-# Technical indicators (RSI, MACD, EMA, Bollinger Bands)
-pandas-ta
-
-# Polymarket CLOB client (uncomment when ready to go live)
-# py-clob-client==0.17.0
+ta==0.11.0
