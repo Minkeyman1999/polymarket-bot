@@ -104,7 +104,7 @@ def _candles_from_binance(count, interval_mins):
 
 def _price_from_chainlink():
     data = _get(POLYMARKET_HISTORY, {"market": "BTC-USD",
-                                      "interval": "1m", "fidelity": 5})
+                                      "interval": "1m", "fidelity": 60})
     if data and data.get("history"):
         return float(data["history"][-1]["p"])
     return None
