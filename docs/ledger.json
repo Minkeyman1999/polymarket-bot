@@ -1,1 +1,112 @@
-[]
+[
+  {
+    "time": "2026-03-25T13:58:28.536014+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 71691.1,
+    "price_now": 71395.9,
+    "change": -295.2,
+    "pnl": 4.5
+  },
+  {
+    "time": "2026-03-25T14:25:13.688053+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 71395.9,
+    "price_now": 71344.0,
+    "change": -51.9,
+    "pnl": 4.5
+  },
+  {
+    "time": "2026-03-25T14:27:02.691331+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 71344.0,
+    "price_now": 71296.1,
+    "change": -47.9,
+    "pnl": 4.5
+  },
+  {
+    "time": "2026-03-25T14:29:11.708046+00:00",
+    "signal": "DOWN",
+    "actual": "UP",
+    "correct": false,
+    "price_then": 71296.1,
+    "price_now": 71478.0,
+    "change": 181.9,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-25T14:34:58.494082+00:00",
+    "signal": "UP",
+    "actual": "DOWN",
+    "correct": false,
+    "price_then": 71478.0,
+    "price_now": 70945.7,
+    "change": -532.3,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-25T16:21:41.989801+00:00",
+    "signal": "UP",
+    "actual": "DOWN",
+    "correct": false,
+    "price_then": 70945.7,
+    "price_now": 70878.0,
+    "change": -67.7,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-25T19:31:48.340406+00:00",
+    "signal": "DOWN",
+    "actual": "UP",
+    "correct": false,
+    "price_then": 70878.0,
+    "price_now": 70938.1,
+    "change": 60.1,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-25T21:07:18.616647+00:00",
+    "signal": "UP",
+    "actual": "UP",
+    "correct": true,
+    "price_then": 70938.1,
+    "price_now": 71397.0,
+    "change": 458.9,
+    "pnl": 4.5
+  },
+  {
+    "time": "2026-03-25T23:04:34.536279+00:00",
+    "signal": "UP",
+    "actual": "DOWN",
+    "correct": false,
+    "price_then": 71397.0,
+    "price_now": 70550.4,
+    "change": -846.6,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-26T05:25:50.973015+00:00",
+    "signal": "UP",
+    "actual": "DOWN",
+    "correct": false,
+    "price_then": 70550.4,
+    "price_now": 70001.1,
+    "change": -549.3,
+    "pnl": -5.0
+  },
+  {
+    "time": "2026-03-26T08:11:01.306440+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 70001.1,
+    "price_now": 69380.6,
+    "change": -620.5,
+    "pnl": 4.5
+  }
+]
