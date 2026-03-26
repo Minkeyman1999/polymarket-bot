@@ -42,6 +42,8 @@ jobs:
 
       - name: Save logs to repo
         run: |
+          cp logs/ledger.json docs/ledger.json || true
+          cp logs/state.json docs/state.json || true
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add logs/state.json logs/ledger.json logs/bot.log || true
