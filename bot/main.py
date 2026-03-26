@@ -174,7 +174,12 @@ def main():
     log(f"Bot v4 | {now_str} | paper={PAPER_TRADE} | bet=${BET_SIZE_USD}")
 
     # ── Execution drift check ──────────────────────────────
-    log_execution_drift()
+    drift = log_execution_drift()
+
+    if drift > 150:
+        log(f"⏭ Skipping run — {drift}s drift is too late for this candle (max 150s)")
+        log("=" * 50)
+        return
 
     # ── Load persistent state ──────────────────────────────
     state  = load_json(STATE_FILE,  default=None)
