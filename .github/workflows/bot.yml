@@ -46,6 +46,6 @@ jobs:
           cp logs/state.json docs/state.json || true
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add logs/state.json logs/ledger.json logs/bot.log || true
+          git add logs/state.json logs/ledger.json logs/bot.log docs/ledger.json docs/state.json
           git diff --staged --quiet || git commit -m "bot: update logs [skip ci]"
           git push || true
