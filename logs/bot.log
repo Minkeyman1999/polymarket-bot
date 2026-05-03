@@ -5969,3 +5969,8 @@
 [2026-05-03 10:16:18 UTC] 🛑 CIRCUIT BREAKER: 5 consecutive losses
 [2026-05-03 10:16:18 UTC] Pausing bets until manually reset.
 [2026-05-03 10:16:18 UTC] ==================================================
+[2026-05-03 11:09:48 UTC] ==================================================
+[2026-05-03 11:09:48 UTC] Bot v4 | 2026-05-03 11:09 UTC | paper=True | bet=$5.0
+[2026-05-03 11:09:48 UTC] ⏱ Execution drift: 288s past 5-min mark (target <90s, ideal <30s)
+[2026-05-03 11:09:48 UTC] ⏭ Skipping run — 288s drift is too late for this candle (max 150s)
+[2026-05-03 11:09:48 UTC] ==================================================
