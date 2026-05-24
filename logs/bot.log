@@ -9600,3 +9600,26 @@
 [2026-05-24 00:11:59 UTC] Strategy 'previous_candle' → DOWN
 [2026-05-24 00:11:59 UTC] 📝 [PAPER TRADE] $5.0 → DOWN at Chainlink $76,578.50
 [2026-05-24 00:11:59 UTC] ==================================================
+[2026-05-24 04:41:23 UTC] ==================================================
+[2026-05-24 04:41:23 UTC] Bot v4 | 2026-05-24 04:41 UTC | paper=True | bet=$5.0
+[2026-05-24 04:41:23 UTC] ⏱ Execution drift: 83s past 5-min mark (target <90s, ideal <30s)
+[2026-05-24 04:41:23 UTC] Fetching data (parallel)...
+[2026-05-24 04:41:23 UTC] Candles: trying Chainlink...
+[2026-05-24 04:41:23 UTC] Chainlink failed, trying Kraken...
+[2026-05-24 04:41:23 UTC] Kraken price fallback: $76,650.10
+[2026-05-24 04:41:23 UTC] Kraken candles: 100 | $76,650.10
+[2026-05-24 04:41:23 UTC] ──────────────────────────────────────────────────
+[2026-05-24 04:41:23 UTC] OUTCOME ❌  Signal: DOWN | Actual: UP
+[2026-05-24 04:41:23 UTC] Price:  $76,578.50 → $76,650.10 (+$71.60)
+[2026-05-24 04:41:23 UTC] P&L this trade: $-5.00
+[2026-05-24 04:41:23 UTC] ──────────────────────────────────────────────────
+[2026-05-24 04:41:23 UTC] 📊 PERFORMANCE SUMMARY
+[2026-05-24 04:41:23 UTC]    Trades:     342 (87W / 255L)
+[2026-05-24 04:41:23 UTC]    Win rate:   25.4% (❌ below 52.6% break-even)
+[2026-05-24 04:41:23 UTC]    Total P&L:  $-883.50
+[2026-05-24 04:41:23 UTC]    Best trade: $+4.50
+[2026-05-24 04:41:23 UTC]    Worst:      $-5.00
+[2026-05-24 04:41:23 UTC]    Loss streak:2 (circuit breaker at 5)
+[2026-05-24 04:41:23 UTC] Strategy 'previous_candle' → SKIP
+[2026-05-24 04:41:23 UTC] No signal — skipping.
+[2026-05-24 04:41:23 UTC] ==================================================
