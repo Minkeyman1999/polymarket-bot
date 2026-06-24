@@ -4698,5 +4698,15 @@
     "price_now": 62766.8,
     "change": 389.0,
     "pnl": -5.0
+  },
+  {
+    "time": "2026-06-24T01:21:46.812878+00:00",
+    "signal": "DOWN",
+    "actual": "DOWN",
+    "correct": true,
+    "price_then": 62766.8,
+    "price_now": 62639.7,
+    "change": -127.1,
+    "pnl": 4.5
   }
 ]
