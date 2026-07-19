@@ -18276,3 +18276,8 @@
 [2026-07-19 15:26:06 UTC] Strategy 'previous_candle' → DOWN
 [2026-07-19 15:26:06 UTC] 📝 [PAPER TRADE] $5.0 → DOWN at Chainlink $64,490.40
 [2026-07-19 15:26:06 UTC] ==================================================
+[2026-07-19 16:27:52 UTC] ==================================================
+[2026-07-19 16:27:52 UTC] Bot v4 | 2026-07-19 16:27 UTC | paper=True | bet=$5.0
+[2026-07-19 16:27:52 UTC] ⏱ Execution drift: 172s past 5-min mark (target <90s, ideal <30s)
+[2026-07-19 16:27:52 UTC] ⏭ Skipping run — 172s drift is too late for this candle (max 150s)
+[2026-07-19 16:27:52 UTC] ==================================================
