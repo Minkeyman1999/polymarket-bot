@@ -20240,3 +20240,32 @@
 [2026-07-29 17:38:57 UTC] ⏱ Execution drift: 237s past 5-min mark (target <90s, ideal <30s)
 [2026-07-29 17:38:57 UTC] ⏭ Skipping run — 237s drift is too late for this candle (max 150s)
 [2026-07-29 17:38:57 UTC] ==================================================
+[2026-07-29 18:41:08 UTC] ==================================================
+[2026-07-29 18:41:08 UTC] Bot v4 | 2026-07-29 18:41 UTC | paper=True | bet=$5.0
+[2026-07-29 18:41:08 UTC] ⏱ Execution drift: 68s past 5-min mark (target <90s, ideal <30s)
+[2026-07-29 18:41:08 UTC] Fetching data (parallel)...
+[2026-07-29 18:41:08 UTC] Candles: trying Chainlink...
+[2026-07-29 18:41:18 UTC] Retry 1/3 (HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10))
+[2026-07-29 18:41:18 UTC] Retry 1/3 (HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10))
+[2026-07-29 18:41:30 UTC] Retry 2/3 (HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10))
+[2026-07-29 18:41:30 UTC] Retry 2/3 (HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10))
+[2026-07-29 18:41:44 UTC] Failed after 3 attempts: HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10)
+[2026-07-29 18:41:44 UTC] Failed after 3 attempts: HTTPSConnectionPool(host='clob.polymarket.com', port=443): Read timed out. (read timeout=10)
+[2026-07-29 18:41:44 UTC] Chainlink failed, trying Kraken...
+[2026-07-29 18:41:44 UTC] Kraken price fallback: $64,280.30
+[2026-07-29 18:41:44 UTC] Kraken candles: 100 | $64,280.30
+[2026-07-29 18:41:44 UTC] ──────────────────────────────────────────────────
+[2026-07-29 18:41:44 UTC] OUTCOME ❌  Signal: DOWN | Actual: UP
+[2026-07-29 18:41:44 UTC] Price:  $64,243.80 → $64,280.30 (+$36.50)
+[2026-07-29 18:41:44 UTC] P&L this trade: $-5.00
+[2026-07-29 18:41:44 UTC] ──────────────────────────────────────────────────
+[2026-07-29 18:41:44 UTC] 📊 PERFORMANCE SUMMARY
+[2026-07-29 18:41:44 UTC]    Trades:     726 (282W / 444L)
+[2026-07-29 18:41:44 UTC]    Win rate:   38.8% (❌ below 52.6% break-even)
+[2026-07-29 18:41:44 UTC]    Total P&L:  $-951.00
+[2026-07-29 18:41:44 UTC]    Best trade: $+4.50
+[2026-07-29 18:41:44 UTC]    Worst:      $-5.00
+[2026-07-29 18:41:44 UTC]    Loss streak:4 (circuit breaker at 5)
+[2026-07-29 18:41:44 UTC] Strategy 'previous_candle' → UP
+[2026-07-29 18:41:44 UTC] 📝 [PAPER TRADE] $5.0 → UP at Chainlink $64,280.30
+[2026-07-29 18:41:44 UTC] ==================================================
