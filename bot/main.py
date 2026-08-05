@@ -30,7 +30,7 @@ MAX_CONSECUTIVE_LOSSES = 5
 
 # Low liquidity hours (UTC) — skip betting during these hours
 # 2am-4am UTC is historically thin for BTC prediction markets
-LOW_LIQUIDITY_HOURS = {2, 3}
+LOW_LIQUIDITY_HOURS = {2, 3, 4}
 
 # File paths for persistent state
 LOGS_DIR    = os.path.join(os.path.dirname(__file__), "..", "logs")
