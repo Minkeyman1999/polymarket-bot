@@ -25630,3 +25630,8 @@
 [2026-08-17 03:36:27 UTC]    Loss streak:3 (circuit breaker at 5)
 [2026-08-17 03:36:27 UTC] ⏸ Low liquidity hour (3:00 UTC) — skipping bet
 [2026-08-17 03:36:27 UTC] ==================================================
+[2026-08-17 04:24:22 UTC] ==================================================
+[2026-08-17 04:24:22 UTC] Bot v4 | 2026-08-17 04:24 UTC | paper=True | bet=$5.0
+[2026-08-17 04:24:22 UTC] ⏱ Execution drift: 262s past 5-min mark (target <90s, ideal <30s)
+[2026-08-17 04:24:22 UTC] ⏭ Skipping run — 262s drift is too late for this candle (max 150s)
+[2026-08-17 04:24:22 UTC] ==================================================
