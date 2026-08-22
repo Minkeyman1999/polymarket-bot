@@ -28441,3 +28441,8 @@
 [2026-08-22 04:08:00 UTC] ⏱ Execution drift: 180s past 5-min mark (target <90s, ideal <30s)
 [2026-08-22 04:08:00 UTC] ⏭ Skipping run — 180s drift is too late for this candle (max 150s)
 [2026-08-22 04:08:00 UTC] ==================================================
+[2026-08-22 04:48:26 UTC] ==================================================
+[2026-08-22 04:48:26 UTC] Bot v4 | 2026-08-22 04:48 UTC | paper=True | bet=$5.0
+[2026-08-22 04:48:26 UTC] ⏱ Execution drift: 206s past 5-min mark (target <90s, ideal <30s)
+[2026-08-22 04:48:26 UTC] ⏭ Skipping run — 206s drift is too late for this candle (max 150s)
+[2026-08-22 04:48:26 UTC] ==================================================
