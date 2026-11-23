@@ -3,6 +3,7 @@ indicators.py — Technical indicators using 'ta' library
 Uses lazy import to avoid slow cold-start on every run.
 """
 
+from typing import List, Dict, Optional
 import pandas as pd
 
 _ta = None  # lazy loaded
@@ -18,7 +19,7 @@ def _load_ta():
     return _ta
 
 
-def add_indicators(candles):
+def add_indicators(candles: List[Dict]) -> List[Dict]:
     ta = _load_ta()
     if ta is None or len(candles) < 52:
         return candles
